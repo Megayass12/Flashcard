@@ -1,0 +1,253 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:   #2d9e6b;
+  --green-l: #e6f7ef;
+  --green-d: #1a6044;
+  --blue:    #2e7fcc;
+  --blue-l:  #e6f1fb;
+  --blue-d:  #1a4d82;
+  --bg:      #f5f7f2;
+  --card-bg: #ffffff;
+  --text:    #1c2b1f;
+  --muted:   #6b7a6e;
+  --border:  #dde5d8;
+  --shadow:  0 4px 20px rgba(0,0,0,0.10);
+  --radius:  18px;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 3rem;
+  color: var(--text);
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+header h1 {
+  font-family: 'Baloo 2', cursive;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--green-d);
+  line-height: 1.2;
+}
+header p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.tab-btn {
+  padding: 10px 26px;
+  border-radius: 50px;
+  border: 2px solid var(--border);
+  background: var(--card-bg);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab-btn:hover { border-color: var(--green); color: var(--green); }
+.tab-btn.active-foto { background: var(--green); border-color: var(--green); color: #fff; }
+.tab-btn.active-gerak { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+/* PROGRESS */
+.progress-wrap {
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 1rem;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.progress-bar-bg {
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: var(--green);
+  transition: width 0.35s ease;
+}
+
+/* CARD */
+.card-scene {
+  width: 100%;
+  max-width: 520px;
+  height: 260px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: height 0.3s ease;
+}
+.card-scene.has-svg {
+  height: 340px;
+}
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+}
+.card-scene.flipped .card-inner { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.card-front { background: var(--card-bg); }
+.card-back  { background: var(--card-bg); transform: rotateY(180deg); }
+
+.card-topic-badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+.badge-foto  { background: var(--green-l); color: var(--green-d); }
+.badge-gerak { background: var(--blue-l);  color: var(--blue-d); }
+
+.card-emoji { font-size: 2.2rem; margin-bottom: 10px; }
+.card-question { font-size: 1.1rem; font-weight: 700; line-height: 1.5; color: var(--text); }
+.card-hint { font-size: 0.78rem; color: var(--muted); margin-top: 14px; }
+
+.card-answer-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.card-answer {
+  font-size: 0.97rem;
+  font-weight: 600;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre-line;
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 1.4rem;
+}
+.ctrl-btn {
+  padding: 11px 20px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: var(--card-bg);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.ctrl-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.ctrl-btn:not(:disabled):hover { background: var(--border); }
+.ctrl-flip {
+  flex: 1;
+  color: #fff;
+  border-color: transparent;
+}
+.ctrl-flip.tema-foto  { background: var(--green); }
+.ctrl-flip.tema-gerak { background: var(--blue); }
+.ctrl-flip:hover { opacity: 0.88 !important; background: inherit !important; }
+
+/* DOTS */
+.dots {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 520px;
+}
+.dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.dot:hover { transform: scale(1.3); }
+.dot.seen  { background: #aac8b5; }
+.dot.active-foto  { background: var(--green); transform: scale(1.2); }
+.dot.active-gerak { background: var(--blue); transform: scale(1.2); }
+
+@media (max-width: 480px) {
+  header h1 { font-size: 1.5rem; }
+  .card-scene { height: 220px; }
+  .card-face { padding: 1.25rem 1.2rem; }
+  .card-question { font-size: 1rem; }
+}
+
+.card-img {
+  width: 120px;
+  max-width: 80%;
+  margin-top: 10px;
+  border-radius: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* SVG Ilustrasi Tulang */
+.card-svg-wrap {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.card-svg {
+  width: 110px;
+  height: auto;
+  max-height: 100px;
+  display: block;
+}
+
+/* Kartu belakang perlu lebih tinggi jika ada SVG */
+.card-scene.has-svg {
+  height: auto;
+  min-height: 240px;
+}
